@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stormvagt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+
+    <!-- Forside -->
+    <section id="screen-home" class="screen" hidden>
+      <div class="card home-card">
+        <h1 class="logo">Storm<span>vagt</span></h1>
+        <p class="tagline">Hold fyret tændt gennem stormnatten, og få skibene sikkert i havn.</p>
+
+        <label class="field">
+          <span>Dit navn</span>
+          <input id="name-input" type="text" maxlength="12" autocomplete="off" spellcheck="false" placeholder="fx Signe">
+        </label>
+
+        <button id="create-btn" class="btn btn-lamp btn-big" type="button">Opret rum</button>
+
+        <div class="or"><span>eller deltag hos en ven</span></div>
+
+        <div class="join-row">
+          <input id="code-input" type="text" maxlength="8" autocomplete="off" spellcheck="false" placeholder="KODE" aria-label="Rumkode">
+          <button id="join-btn" class="btn btn-sea" type="button">Deltag</button>
+        </div>
+
+        <p id="home-error" class="error" role="alert" hidden></p>
+        <p id="home-status" class="status"></p>
+      </div>
+    </section>
+
+    <!-- Lobby -->
+    <section id="screen-lobby" class="screen" hidden>
+      <div class="lobby-grid">
+        <div class="card">
+          <div class="code-box">
+            <span class="code-label">Rumkode</span>
+            <span id="lobby-code" class="code"></span>
+            <span class="code-hint">Dine venner skriver koden på forsiden for at deltage.</span>
+          </div>
+
+          <p id="lobby-notice" class="notice" role="status" hidden></p>
+
+          <h2>Vogtere <span id="player-count" class="count"></span></h2>
+          <ul id="player-list" class="players"></ul>
+
+          <h2>Nat</h2>
+          <div id="night-buttons" class="nights"></div>
+          <p id="night-hint" class="hint"></p>
+
+          <p id="lobby-error" class="error" role="alert" hidden></p>
+
+          <div class="actions">
+            <button id="start-btn" class="btn btn-lamp btn-big" type="button">Start natten</button>
+            <p id="wait-text" class="hint"></p>
+            <button id="lobby-leave-btn" class="btn btn-plain" type="button">Forlad rummet</button>
+          </div>
+        </div>
+
+        <aside class="card howto">
+          <h2>Sådan spiller I</h2>
+          <ul>
+            <li><b>Gå:</b> A/D eller piletasterne</li>
+            <li><b>Klatre:</b> W/S ved stigen</li>
+            <li><b>Mellemrum:</b> saml op, læg fra dig, og hold nede for at bruge</li>
+          </ul>
+          <h3>Målet</h3>
+          <ul>
+            <li>Skibe kommer ind fra venstre og højre. De kan kun finde i havn, når lampen brænder, og linsen peger mod dem.</li>
+            <li>Tre forliste skibe, og natten er tabt. Når det bliver daggry, har I vundet.</li>
+          </ul>
+          <h3>Tårnet</h3>
+          <ul>
+            <li><b>Lanternerum:</b> fyld olie på lampen, og drej linsen med håndsvinget i hver side.</li>
+            <li><b>Værksted:</b> hent brædder til knuste ruder og en linse, der sidder fast.</li>
+            <li><b>Olielager:</b> fyld oliekanden ved tønderne.</li>
+            <li><b>Kælder:</b> pump vandet ud, før det når olielageret.</li>
+          </ul>
+          <p class="hint">Alle kan alt. Snak sammen, og fordel opgaverne!</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Spil -->
+    <section id="screen-game" class="screen screen-game" hidden>
+      <div class="game-wrap">
+        <div id="hud" class="hud">
+          <span id="hud-info" class="hud-info"></span>
+          <span class="hud-buttons">
+            <button id="mute-btn" class="btn btn-plain btn-small" type="button" tabindex="-1" title="Lyd til eller fra (M)">Lyd til</button>
+            <button id="game-leave-btn" class="btn btn-plain btn-small" type="button" tabindex="-1">Forlad</button>
+          </span>
+        </div>
+        <div class="stage">
+          <canvas id="game"></canvas>
+          <div id="countdown" class="countdown" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resultat -->
+    <section id="screen-results" class="screen" hidden>
+      <div class="card results-card">
+        <h1 id="result-title" class="result-title"></h1>
+        <p id="result-detail" class="result-detail"></p>
+        <p id="result-unlock" class="notice" hidden></p>
+        <div class="actions">
+          <button id="next-btn" class="btn btn-lamp btn-big" type="button">Næste nat</button>
+          <button id="retry-btn" class="btn btn-sea" type="button">Prøv igen</button>
+          <p id="results-wait" class="hint"></p>
+          <button id="back-lobby-btn" class="btn btn-plain" type="button">Tilbage til lobbyen</button>
+          <button id="results-leave-btn" class="btn btn-plain" type="button">Forlad rummet</button>
+        </div>
+        <p id="results-error" class="error" role="alert" hidden></p>
+      </div>
+    </section>
+
+    <!-- Forbindelse -->
+    <div id="conn-overlay" class="overlay" hidden>
+      <div class="card overlay-card">
+        <p id="conn-text" class="overlay-text"></p>
+        <div id="conn-spinner" class="spinner" aria-hidden="true"></div>
+        <button id="conn-home-btn" class="btn btn-lamp" type="button">Tilbage til forsiden</button>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="ui.js"></script>
+</body>
+</html>

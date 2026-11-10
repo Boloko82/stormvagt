@@ -1,0 +1,10 @@
+# Render Blueprint: one free Node web service running the game server.
+# In Render: New > Blueprint, pick this repository, then Apply.
+services:
+  - type: web
+    name: stormvagt
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
